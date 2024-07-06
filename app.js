@@ -11,10 +11,6 @@ const io = require("socket.io")(http,  {
   pingTimeout: 30000,  // Wait 30 seconds for the client to respond to pings
 });
 
-const http = require("http").Server(app);
-
-
-
 // //for customer
 const userauth = require('./route');
 
