@@ -3,12 +3,17 @@ const cors = require("cors");
 const app = express()
 
 const http = require("http").Server(app);
+app.use(cors({
+    origin: '*'
+  }));
 const io = require("socket.io")(http,  {
     pingInterval: 15000, // Ping every 15 seconds
   pingTimeout: 30000,  // Wait 30 seconds for the client to respond to pings
   cors: {
     origin: '*',
-    methods: ['GET', 'POST'],
+      methods: ['GET', 'POST'],
+      allowedHeaders: ["my-custom-header"],
+      credentials: true
   }, // Allow requests from any origin
   });
 
@@ -26,9 +31,7 @@ const coonectdb = () => {
 .catch((err) => console.log(err))
 }
 coonectdb ()
-app.use(cors({
-  origin: '*'
-}));
+
 //applying our middleware
 
 //applying our middleware
