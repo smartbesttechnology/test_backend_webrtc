@@ -1,22 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const app = express()
-
 const http = require("http").Server(app);
-app.use(cors({
-    origin: '*'
-  }));
 const io = require("socket.io")(http,  {
-    pingInterval: 15000, // Ping every 15 seconds
-  pingTimeout: 30000,  // Wait 30 seconds for the client to respond to pings
   cors: {
     origin: '*',
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-    credentials: true,
-  }
-  
-  });
+  },
+  pingInterval: 15000, // Ping every 15 seconds
+  pingTimeout: 30000,  // Wait 30 seconds for the client to respond to pings
+});
+
+const http = require("http").Server(app);
+
+
 
 // //for customer
 const userauth = require('./route');
@@ -31,7 +28,9 @@ const coonectdb = () => {
 .then((result) => console.log('base connetced'))
 .catch((err) => console.log(err))
 }
-coonectdb ()
+coonectdb()
+
+app.use(cors());
 
 //applying our middleware
 
