@@ -11,10 +11,11 @@ const io = require("socket.io")(http,  {
   pingTimeout: 30000,  // Wait 30 seconds for the client to respond to pings
   cors: {
     origin: '*',
-      methods: ['GET', 'POST'],
-      allowedHeaders: ["my-custom-header"],
-      credentials: true
-  }, // Allow requests from any origin
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true,
+  }
+  
   });
 
 // //for customer
