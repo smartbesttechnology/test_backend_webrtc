@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const app = express()
+const dotenv = require("dotenv");
+dotenv.config({ path: ".env" });
 const http = require("http").Server(app);
 const io = require("socket.io")(http,  {
   cors: {
@@ -17,6 +19,7 @@ const userauth = require('./route');
 //conncetdb
 const mongoose = require('mongoose');
 const { connectio } = require("./socket");
+const { PORT } = require("./utils");
 const base = 'mongodb+srv://emmaro:1234@tutorial.klpqo.mongodb.net/chat2?retryWrites=true&w=majority'
 const coonectdb = () => {
     mongoose.set("strictQuery", false);
@@ -70,8 +73,8 @@ app.use((error, req, res, next) => {
 
 
 
-const PORT =  5000;
+const port = PORT || 5000;
 
-http.listen(PORT, () => console.log("coonected"));
+http.listen(port, () => console.log("coonected"));
 connectio(io)
 
