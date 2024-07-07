@@ -72,6 +72,6 @@ app.use((error, req, res, next) => {
 
 const port =  5000;
 
-http.listen(port, () => console.log("coonected"));
+http.listen(5000, () => console.log("coonected"));
 connectio(io)
 
